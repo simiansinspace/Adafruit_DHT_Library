@@ -1,0 +1,41 @@
+FORMAT: 1A
+HOST: https://api.spark.io/v1/devices/53ff6b066667574854472367/
+
+# Kaia Hardware
+
+Kaia Hardware api is a collection of REST api's to access Kaia hardware functions.
+
+# Kaia Functions - API Root [/{?access_token}]
+
+This resource provides a list of all functions via and does not have any attributes. Instead 
+it offers the initial API affordances in the form of the links in the JSON body.
+
+## List Kaia Functions  [GET]
+
++ id - ID of the hardware being retrieved
++ name - Name cooresponding to the ID being retrieved
++ connected - Returns status of connection to Particle cloud
++ variables - returns all variables the user can GET
++ functions - returns all functions the user can POST to
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
++ Response 200 (application/json)
+
+        {
+              "id": "53ff6b066667574854472367",
+              "name": "GLaDOS",
+              "connected": true,
+              "variables": {
+                "brightness": "int32"
+              },
+              "functions": [
+                "light",
+                "brightness",
+                "theme"
+              ],
+              "cc3000_patch_version": "1.29",
+              "product_id": 0,
+              "last_heard": "2015-11-27T20:20:12.381Z"
+        }
