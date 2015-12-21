@@ -40,3 +40,28 @@ form of the links in the JSON body.
               "product_id": 0,
               "last_heard": "2015-11-27T20:20:12.381Z"
         }
+        
+## Kaia Light [/light{?access_token}]
+You may change (or request?) the state of Kaias LED light with this endpoint. 
+This action takes a JSON payload as part of the request.
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
+### Toggle Kaias Light [POST]
+This action takes a JSON payload as part of the request. 
+The user can specify "on" or "off" to toggle the LED light.
+
++ args - you must specify the state of the LED as "on" or "off" 
+
++ Request (application/json)
+
+        {
+            "args":"on"
+        } 
+        
++ Response 200 (application/json)
+
+        {
+        }
+            
