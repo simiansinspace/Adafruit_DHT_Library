@@ -40,6 +40,37 @@ form of the links in the JSON body.
               "product_id": 0,
               "last_heard": "2015-11-27T20:20:12.381Z"
         }
+
+## Kaia Hardware [/hardwareRev{?access_token}]
+Display the hardware version of Kaia with this API
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
+### Display Kaia hardware revision [GET]
+Returns Kaia's hardware revision as a String. (Need to come up with versioning scheme)
+
++ name - name of the variable in the request
++ result - string displaying the hardware revision on Kaia (need to come up with versioning scheme)
++ connected - device connection state to the Particle cloud
++ deviceID - ID of the selected device
+
++ Response 200 (application/json)
+
+        {
+          "cmd": "VarReturn",
+          "name": "hardwareRev",
+          "result": "1.0",
+          "coreInfo": {
+            "last_app": "",
+            "last_heard": "2015-12-24T21:18:53.969Z",
+            "connected": true,
+            "last_handshake_at": "2015-12-24T21:10:49.268Z",
+            "deviceID": "53ff6b066667574854472367",
+            "product_id": 0
+          }
+        }
+
         
 ## Kaia Light [/light{?access_token}]
 You may change (or request?) the state of Kaias LED light with this endpoint. 
@@ -68,7 +99,7 @@ The user can specify "on" or "off" to toggle the LED light.
             "connected": true,
             "return_value": 1
         }
-            
+        
 ## Kaia Brightness [/brightness{?access_token}]
 You may change or request the brightness of Kaias LED light with this endpoint. 
 
