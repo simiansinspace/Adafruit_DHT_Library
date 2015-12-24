@@ -42,7 +42,7 @@ form of the links in the JSON body.
         }
 
 ## Kaia Hardware [/hardwareRev{?access_token}]
-Display the hardware version of Kaia with this API
+Display the hardware revision of Kaia with this API
 
 + Parameters
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
@@ -51,7 +51,7 @@ Display the hardware version of Kaia with this API
 Returns Kaia's hardware revision as a String. (Need to come up with versioning scheme)
 
 + name - name of the variable in the request
-+ result - string displaying the hardware revision on Kaia (need to come up with versioning scheme)
++ result - string displaying the hardware revision of Kaia (need to come up with versioning scheme)
 + connected - device connection state to the Particle cloud
 + deviceID - ID of the selected device
 
@@ -71,6 +71,35 @@ Returns Kaia's hardware revision as a String. (Need to come up with versioning s
           }
         }
 
+## Kaia Software [/softwareVer{?access_token}]
+Display the software version of Kaia with this API
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
+### Display Kaia software version [GET]
+Returns Kaia's software version as a String. (Need to come up with versioning scheme)
+
++ name - name of the variable in the request
++ result - string displaying the software version of Kaia (need to come up with versioning scheme)
++ connected - device connection state to the Particle cloud
++ deviceID - ID of the selected device
+
++ Response 200 (application/json)
+
+        {
+          "cmd": "VarReturn",
+          "name": "softwareVer",
+          "result": "1.1",
+          "coreInfo": {
+            "last_app": "",
+            "last_heard": "2015-12-24T21:18:53.969Z",
+            "connected": true,
+            "last_handshake_at": "2015-12-24T21:10:49.268Z",
+            "deviceID": "53ff6b066667574854472367",
+            "product_id": 0
+          }
+        }
         
 ## Kaia Light [/light{?access_token}]
 You may change (or request?) the state of Kaias LED light with this endpoint. 
