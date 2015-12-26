@@ -193,39 +193,12 @@ You may interact with Kaia's auto-brightness feature with this endpoint.
 + Parameters
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
-### Display Kaia Auto-Brightness state [GET]
-Returns the brightness level of Kaia's LED between 0 (off) and 255 (on)
-
-+ name - Name of the variable in the request
-+ result - integer value between 0 (off) - 255 (on) of the brightness level
-+ connected - device connection state to the Particle cloud
-+ deviceID - ID of the selected device
-
-+ Response 200 (application/json)
-
-        {
-          "cmd": "VarReturn",
-          "name": "brightness",
-          "result": 188,
-          "coreInfo": {
-            "last_app": "",
-            "last_heard": "2015-12-24T19:44:22.803Z",
-            "connected": true,
-            "last_handshake_at": "2015-12-24T19:00:48.778Z",
-            "deviceID": "53ff6b066667574854472367",
-            "product_id": 0
-          }
-        }
-
-
 ### Toggle Kaia Auto-Brightness [POST]
 This action takes a JSON payload as part of the request. 
-The user can enable or disable auto-brightness of the Kaia system by posting
+The user can enable or disable auto-brightness of the Kaia system by posting an "on" or "off" argument
 
-+ args - you must specify the brightness of the LED as an integer between 0 and 255
-+ return_value - returns the integer value Kaia was able to change the LED to 
-(ex. if the user specifies 120 and the microcontroller can successfully change the brightness 
-to 120, the return_value will indicate "120"
++ args - you must specify to enable or disable the autobrightness feature with "on" or "off"
++ return_value - returns the state of the auto-brightness variable, 1 (on) or 0 (off) and a -1 if an error occured.
 
 + Request (application/json)
 
