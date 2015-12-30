@@ -103,6 +103,80 @@ Returns Kaia's software version as a String. (Need to come up with versioning sc
             "product_id": 0
           }
         }
+
+## Kaia State [/kaiaEnv{?access_token}]
+Displays all environment variables
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
+### Display Kaia env variables [GET]
+Returns Kaia's environment variables and state as a coded string.
+
++ name - name of the variable in the request
++ result - string displaying a coded set for Kaia's environment variables
+ + l - Lamp Lit state. This indicates if the LED light is currently lit
+ + b - Brightness. Just like the Brightness GET command, this return the LED brightness
+ + a - Auto brightness state. This indicates if the auto-brightness mode is toggled
++ connected - device connection state to the Particle cloud
++ deviceID - ID of the selected device
+
++ Response 200 (application/json)
+
+        {
+          "cmd": "VarReturn",
+          "name": "kaiaEnv",
+          "result": "{\"l\": 1, \"b\": 255, \"a\": 1}",
+          "coreInfo": {
+            "last_app": "",
+            "last_heard": "2015-12-30T03:25:36.498Z",
+            "connected": true,
+            "last_handshake_at": "2015-12-30T03:20:41.921Z",
+            "deviceID": "53ff6b066667574854472367",
+            "product_id": 0
+          }
+        }
+
+## Kaia Sensors [/sensors{?access_token}]
+Displays all Kaia sensors
+
++ Parameters
+    + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
+
+### Display Kaia sensor readings [GET]
+Returns Kaia's sensors readings as a coded string.
+Returns both raw readings as well as averaged and exponential moving averaged readings.
+
++ name - name of the variable in the request
++ result - string displaying a coded set for Kaia's sensor readings
+ + c - Concentration. This is the raw particulate matter reading from the Shinyei sensor
+ over 30 seconds.
+ + d - Delta Concentration. This is the amount the concentration has changed since 
+ the previous reading.
+ + e - Exponential Moving Average (EMA). This is a weighted moving average favoring 
+ the most recent reading out of 10 readings. 
+ ((concentration - previousEMA) * smoothingConstant) + previousEMA
+ + h - Relative humidty
+ + f - Temperature. Environment temp in Fahrenheit
++ connected - device connection state to the Particle cloud
++ deviceID - ID of the selected device
+
++ Response 200 (application/json)
+
+        
+        {
+          "cmd": "VarReturn",
+          "name": "sensors",
+          "result": "{\"c\": 1, \"d\": 1, \"e\": 0, \"h\": 0.00, \"f\": 32.00}",
+          "coreInfo": {
+            "last_app": "",
+            "last_heard": "2015-12-30T03:46:49.400Z",
+            "connected": true,
+            "last_handshake_at": "2015-12-30T03:46:16.288Z",
+            "deviceID": "53ff6b066667574854472367",
+            "product_id": 0
+          }
+        }
         
 ## Kaia Light [/light{?access_token}]
 You may change (or request?) the state of Kaias LED light with this endpoint. 
