@@ -1,11 +1,11 @@
 FORMAT: 1A
-HOST: https://api.spark.io/v1/devices/53ff6b066667574854472367/
+HOST: https://api.spark.io/v1/devices
 
 # Kaia Hardware
 
 Kaia Hardware api is a collection of REST api's to access Kaia hardware functions.
 
-# Kaia Functions - API Root [/{?access_token}]
+# Kaia Functions - API Root [/{device_id}/{?access_token}]
 
 This resource provides a list of all functions and variables available to Kaia and
 does not have any attributes. Instead it offers the initial API affordances in the 
@@ -20,8 +20,9 @@ form of the links in the JSON body.
 + functions - returns all functions the user can POST to
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
-
+    
 + Response 200 (application/json)
 
         {
@@ -44,10 +45,11 @@ form of the links in the JSON body.
             "last_heard": "2015-12-25T00:47:53.812Z"
         }
 
-## Kaia Hardware [/hardwareRev{?access_token}]
+## Kaia Hardware [/{device_id}/hardwareRev{?access_token}]
 Display the hardware revision of Kaia with this API
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Display Kaia hardware revision [GET]
@@ -74,10 +76,11 @@ Returns Kaia's hardware revision as a String. (Need to come up with versioning s
           }
         }
 
-## Kaia Software [/softwareVer{?access_token}]
+## Kaia Software [/{device_id}/softwareVer{?access_token}]
 Display the software version of Kaia with this API
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Display Kaia software version [GET]
@@ -104,10 +107,11 @@ Returns Kaia's software version as a String. (Need to come up with versioning sc
           }
         }
 
-## Kaia State [/kaiaEnv{?access_token}]
+## Kaia State [/{device_id}/kaiaEnv{?access_token}]
 Displays all environment variables
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Display Kaia env variables [GET]
@@ -137,10 +141,11 @@ Returns Kaia's environment variables and state as a coded string.
           }
         }
 
-## Kaia Sensors [/sensors{?access_token}]
+## Kaia Sensors [/{device_id}/sensors{?access_token}]
 Displays all Kaia sensors
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Display Kaia sensor readings [GET]
@@ -151,38 +156,31 @@ Returns both raw readings as well as averaged and exponential moving averaged re
 + result - string displaying a coded set for Kaia's sensor readings
  + c - Concentration. This is the raw particulate matter reading from the Shinyei sensor
  over 30 seconds.
- + d - Delta Concentration. This is the amount the concentration has changed since 
- the previous reading.
- + e - Exponential Moving Average (EMA). This is a weighted moving average favoring 
- the most recent reading out of 10 readings. 
- ((concentration - previousEMA) * smoothingConstant) + previousEMA
- + h - Relative humidty
- + f - Temperature. Environment temp in Fahrenheit
 + connected - device connection state to the Particle cloud
 + deviceID - ID of the selected device
 
 + Response 200 (application/json)
 
-        
         {
           "cmd": "VarReturn",
-          "name": "sensors",
-          "result": "{\"c\": 1, \"d\": 1, \"e\": 0, \"h\": 0.00, \"f\": 32.00}",
+          "name": "kaiaEnv",
+          "result": "{\"l\": 1, \"b\": 255, \"a\": 1}",
           "coreInfo": {
             "last_app": "",
-            "last_heard": "2015-12-30T03:46:49.400Z",
+            "last_heard": "2015-12-30T03:25:36.498Z",
             "connected": true,
-            "last_handshake_at": "2015-12-30T03:46:16.288Z",
+            "last_handshake_at": "2015-12-30T03:20:41.921Z",
             "deviceID": "53ff6b066667574854472367",
             "product_id": 0
           }
         }
         
-## Kaia Light [/light{?access_token}]
+## Kaia Light [/{device_id}/light{?access_token}]
 You may change (or request?) the state of Kaias LED light with this endpoint. 
 This action takes a JSON payload as part of the request.
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Toggle Kaia Light [POST]
@@ -206,10 +204,11 @@ The user can specify "on" or "off" to toggle the LED light.
             "return_value": 1
         }
         
-## Kaia Brightness [/brightness{?access_token}]
+## Kaia Brightness [/{device_id}/brightness{?access_token}]
 You may change or request the brightness of Kaias LED light with this endpoint. 
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Display Kaia brightness [GET]
@@ -261,10 +260,11 @@ to 120, the return_value will indicate "120"
             "return_value": 180
         }
             
-## Kaia Auto-Brightness [/autoBright{?access_token}]
+## Kaia Auto-Brightness [/{device_id}/autoBright{?access_token}]
 You may interact with Kaia's auto-brightness feature with this endpoint. 
 
 + Parameters
+    + device_id: 53ff6b066667574854472367 (required, string) - the Particle device id for this Kaia system
     + access_token: 9b547a8ed26de0a21babe4eaa82d04287694a7b2 (required, string) - The token for the Kaia system
 
 ### Toggle Kaia Auto-Brightness [POST]
