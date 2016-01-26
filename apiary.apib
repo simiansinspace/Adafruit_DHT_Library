@@ -156,6 +156,13 @@ Returns both raw readings as well as averaged and exponential moving averaged re
 + result - string displaying a coded set for Kaia's sensor readings
  + c - Concentration. This is the raw particulate matter reading from the Shinyei sensor
  over 30 seconds.
+ + d - Delta Concentration. This is the amount the concentration has changed since 
+ the previous reading.
+ + e - Exponential Moving Average (EMA). This is a weighted moving average favoring 
+ the most recent reading out of 10 readings. 
+ ((concentration - previousEMA) * smoothingConstant) + previousEMA
+ + h - Relative humidty
+ + f - Temperature. Environment temp in Fahrenheit
 + connected - device connection state to the Particle cloud
 + deviceID - ID of the selected device
 
